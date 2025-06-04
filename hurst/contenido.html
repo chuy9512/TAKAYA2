@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takaya - Silla Japonesa</title>
+    <link rel="stylesheet" href="css/contestyle.css">
+</head>
+<body>
+    <div class="product-container">
+        <div class="image-slider">
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <img id="product-image" src="imagen1.jpg" alt="Silla Japonesa">
+            <button class="next" onclick="nextSlide()">&#10095;</button>
+        </div>
+        <div class="product-details">
+            <h1>Silla Japonesa</h1>
+            <h2>Materiales</h2>
+            <p>Cedro Japonés</p>
+            <div class="material-sample"></div><div class="material-sample"></div>
+            <h2>Colores de Pintura</h2>
+            <select id="paint-color" onchange="updateColor()">
+                <option value="NY2" data-color="#c58c47" data-image="imagen1.jpg">NY2 (acabado de poliuretano)</option>
+                <option value="NY3" data-color="#a67840" data-image="imagen2.jpg">NY3 (acabado mate)</option>
+                <option value="NY4" data-color="#8d6239" data-image="imagen3.jpg">NY4 (acabado brillante)</option>
+            </select>
+            <div class="color-sample" id="color-display" style="background-color: #c58c47;"></div>
+            <h2>Dimensiones</h2>
+            <p>W69 × D74.5 × H72.5 SH30 AH56 (cm)</p>
+            <button class="buy-button">Comprar Ahora</button>
+        </div>
+    </div>
+    
+    <script>
+        // Slider de imágenes
+        let images = ["imagen1.jpg", "imagen2.jpg", "imagen3.jpg"];
+        let currentIndex = 0;
+        const productImage = document.getElementById("product-image");
+        
+        function prevSlide() {
+            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            productImage.src = images[currentIndex];
+        }
+        
+        function nextSlide() {
+            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+            productImage.src = images[currentIndex];
+        }
+        
+        // Cambio de color de pintura y de imagen
+        function updateColor() {
+            const selectedOption = document.getElementById("paint-color").selectedOptions[0];
+            const newColor = selectedOption.getAttribute("data-color");
+            const newImage = selectedOption.getAttribute("data-image");
+            
+            document.getElementById("color-display").style.backgroundColor = newColor;
+            productImage.src = newImage;
+        }
+    </script>
+</body>
+</html>
